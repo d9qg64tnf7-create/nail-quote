@@ -4,52 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>Nail Art Quote - 韓系撞色美甲預約</title>
+    <title>952.by.summer 預約估價</title>
     <style>
         :root {
             --primary: #c58a99; /* 粉藕 */
             --secondary: #59597a; /* 霧灰藍 */
-            --accent: #e5d778; /* 芥末黃 */
-            --bg: #000000;
-            --text: #ffffff;
-            --card-bg: #1a1a1a;
+            --bg: #e5d778; /* 芥末黃 */
+            --white: #ffffff;
+            --black: #333333;
         }
 
         * {
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--black);
             margin: 0;
-            padding: 20px 20px 120px 20px;
-            line-height: 1.6;
+            padding: 20px 20px 140px 20px;
         }
 
-        /* 防止 iOS 自動將數字轉為藍色連結 */
-        a[href^="tel"], span[class^="price"] {
+        /* 強制鎖定顏色，防止 iOS 藍字 */
+        a[href^="tel"], span, div, p, h1, h2 {
             color: inherit !important;
             text-decoration: none !important;
         }
 
         h1 {
-            color: var(--accent);
+            color: var(--secondary);
             text-align: center;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
             margin-bottom: 30px;
             cursor: pointer;
             user-select: none;
+            font-weight: 900;
         }
 
         .section-title {
-            color: var(--primary);
-            font-size: 1.1rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
+            color: var(--white);
+            background-color: var(--secondary);
+            display: inline-block;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
             margin: 25px 0 15px 0;
         }
 
@@ -61,43 +62,45 @@
         }
 
         .gel-item {
-            background: var(--card-bg);
-            border: 2px solid var(--secondary);
-            border-radius: 12px;
-            padding: 15px;
+            background: var(--white);
+            border: 3px solid transparent;
+            border-radius: 15px;
+            padding: 20px 10px;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
         .gel-item.active {
+            border-color: var(--primary);
             background: var(--primary);
-            border-color: var(--accent);
-            transform: scale(0.98);
+            color: var(--white) !important;
+        }
+        
+        .gel-item.active div {
+            color: var(--white) !important;
         }
 
         /* 加購項目列表 */
-        .addon-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
         .addon-item {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 15px;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
         .addon-info div:first-child {
             font-weight: bold;
-            margin-bottom: 4px;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
         }
 
         .addon-info div:last-child {
-            color: var(--accent);
+            color: var(--primary);
             font-size: 0.9rem;
         }
 
@@ -105,18 +108,18 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            background: var(--secondary);
-            border-radius: 20px;
-            padding: 5px 12px;
+            background: var(--bg);
+            border-radius: 25px;
+            padding: 5px 15px;
         }
 
         .btn-qty {
             background: none;
             border: none;
-            color: white;
-            font-size: 1.2rem;
-            width: 25px;
-            cursor: pointer;
+            color: var(--secondary);
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 0 5px;
         }
 
         /* 卸甲區 */
@@ -127,143 +130,115 @@
 
         .removal-opt {
             flex: 1;
-            padding: 12px;
-            background: var(--card-bg);
-            border: 1px solid var(--secondary);
-            border-radius: 8px;
+            padding: 15px 5px;
+            background: var(--white);
+            border: 2px solid transparent;
+            border-radius: 12px;
             text-align: center;
             font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .removal-opt.active {
             background: var(--secondary);
-            color: var(--accent);
+            color: var(--white) !important;
         }
 
-        /* 底部固定欄 */
+        /* 底部計算欄 */
         .footer-bar {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: var(--white);
             padding: 20px;
-            border-top: 1px solid var(--secondary);
+            border-radius: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             z-index: 100;
         }
 
         .total-price {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: var(--accent);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--secondary);
         }
 
         .btn-copy {
             background: var(--primary);
-            color: white;
+            color: var(--white) !important;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 25px;
+            border-radius: 12px;
             font-weight: bold;
+            font-size: 1rem;
         }
 
-        /* 後台管理彈窗 */
+        /* 後台彈窗 */
         #admin-panel {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #222;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            z-index: 1001;
-            padding: 20px;
-            border: 2px solid var(--accent);
-            border-radius: 15px;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: #fff; width: 90%; max-height: 80vh; overflow-y: auto;
+            z-index: 1001; padding: 25px; border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.3);
         }
 
         .overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
+            background: rgba(0,0,0,0.6); z-index: 1000;
         }
 
         textarea {
-            width: 100%;
-            height: 200px;
-            background: #000;
-            color: #0f0;
-            font-family: monospace;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        .admin-btns {
-            display: flex;
-            gap: 10px;
-        }
-
-        .admin-btns button {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
+            width: 100%; height: 250px; padding: 10px;
+            border: 1px solid #ccc; border-radius: 10px; margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
 
-    <h1 id="shop-name">Studio Nail</h1>
+    <h1 id="shop-name">952.by.summer</h1>
 
     <div class="section-title">凝膠項目</div>
     <div id="gel-container" class="gel-grid"></div>
 
     <div class="section-title">加購項目</div>
-    <div id="addon-container" class="addon-list"></div>
+    <div id="addon-container"></div>
 
     <div class="section-title">卸甲續作</div>
     <div id="removal-container" class="removal-box"></div>
 
     <div class="footer-bar">
         <div>
-            <div style="font-size: 0.8rem; color: #888;">預估金額</div>
+            <div style="font-size: 0.8rem; color: #888;">預估總額</div>
             <div class="total-price">$ <span id="total-amount">0</span></div>
         </div>
-        <button class="btn-copy" onclick="copyOrder()">一鍵複製預約</button>
+        <button class="btn-copy" onclick="copyOrder()">一鍵複製</button>
     </div>
 
-    <div id="overlay" class="overlay"></div>
+    <div id="overlay" class="overlay" onclick="closeAdmin()"></div>
     <div id="admin-panel">
-        <h3>管理面板 (JSON 格式)</h3>
+        <h3 style="margin-top:0">管理後台 (JSON)</h3>
         <textarea id="data-input"></textarea>
-        <div class="admin-btns">
-            <button onclick="saveData()" style="background: #4caf50; color: white;">儲存並更新</button>
-            <button onclick="closeAdmin()" style="background: #f44336; color: white;">取消</button>
-        </div>
-        <p style="font-size: 0.7rem; color: #888; margin-top: 10px;">請確保 JSON 格式正確。重新整理網頁後生效。</p>
+        <button onclick="saveData()" style="width:100%; padding:15px; background:var(--secondary); color:#fff; border:none; border-radius:10px;">儲存並更新</button>
     </div>
 
     <script>
-        // 預設資料
         const defaultData = {
             gels: [
                 { id: 'g1', name: '單色凝膠', price: 800 },
                 { id: 'g2', name: '貓眼凝膠', price: 1000 },
-                { id: 'g3', name: '暈染設計', price: 1200 },
-                { id: 'g4', name: '法式指甲', price: 1100 }
+                { id: 'g3', name: '造型設計', price: 1300 },
+                { id: 'g4', name: '法式指甲', price: 1200 }
             ],
             addons: [
                 { id: 'a1', name: '局部延甲', price: 150 },
                 { id: 'a2', name: '立體飾品', price: 50 },
-                { id: 'a3', name: '手繪造型', price: 200 }
+                { id: 'a3', name: '手繪加強', price: 200 }
             ],
             removals: [
                 { id: 'r1', name: '無須卸甲', price: 0 },
@@ -272,10 +247,9 @@
             ]
         };
 
-        let currentData = JSON.parse(localStorage.getItem('nailData')) || defaultData;
+        let currentData = JSON.parse(localStorage.getItem('nailData_summer')) || defaultData;
         let selection = { gel: null, addons: {}, removal: 'r1' };
 
-        // 初始化渲染
         function init() {
             renderGels();
             renderAddons();
@@ -287,8 +261,8 @@
             const container = document.getElementById('gel-container');
             container.innerHTML = currentData.gels.map(item => `
                 <div class="gel-item ${selection.gel === item.id ? 'active' : ''}" onclick="selectGel('${item.id}')">
-                    <div>${item.name}</div>
-                    <div style="color: var(--accent);">$${item.price}</div>
+                    <div style="font-weight:bold">${item.name}</div>
+                    <div style="font-size:0.9rem; margin-top:5px; color:var(--primary)">$${item.price}</div>
                 </div>
             `).join('');
         }
@@ -303,7 +277,7 @@
                     </div>
                     <div class="counter">
                         <button class="btn-qty" onclick="updateAddon('${item.id}', -1)">-</button>
-                        <span id="qty-${item.id}">${selection.addons[item.id] || 0}</span>
+                        <span style="font-weight:bold; min-width:20px; text-align:center">${selection.addons[item.id] || 0}</span>
                         <button class="btn-qty" onclick="updateAddon('${item.id}', 1)">+</button>
                     </div>
                 </div>
@@ -319,18 +293,16 @@
             `).join('');
         }
 
-        // 交互邏輯
         function selectGel(id) {
-            selection.gel = selection.gel === id ? null : id;
+            selection.gel = (selection.gel === id) ? null : id;
             renderGels();
             calculateTotal();
         }
 
         function updateAddon(id, delta) {
             const current = selection.addons[id] || 0;
-            const next = Math.max(0, current + delta);
-            selection.addons[id] = next;
-            document.getElementById(`qty-${id}`).innerText = next;
+            selection.addons[id] = Math.max(0, current + delta);
+            renderAddons();
             calculateTotal();
         }
 
@@ -342,56 +314,43 @@
 
         function calculateTotal() {
             let total = 0;
-            // 凝膠
             const gel = currentData.gels.find(i => i.id === selection.gel);
             if (gel) total += gel.price;
-            // 加購
             currentData.addons.forEach(item => {
                 total += (selection.addons[item.id] || 0) * item.price;
             });
-            // 卸甲
-            const removal = currentData.removals.find(i => i.id === selection.removal);
-            if (removal) total += removal.price;
-
+            const rem = currentData.removals.find(i => i.id === selection.removal);
+            if (rem) total += rem.price;
             document.getElementById('total-amount').innerText = total;
         }
 
         function copyOrder() {
-            let text = "【美甲預約諮詢】\n";
             const gel = currentData.gels.find(i => i.id === selection.gel);
-            text += `● 項目：${gel ? gel.name : '未選取'}\n`;
+            const rem = currentData.removals.find(i => i.id === selection.removal);
+            const ads = currentData.addons.filter(i => selection.addons[i.id] > 0)
+                        .map(i => `${i.name}x${selection.addons[i.id]}`).join(', ');
+
+            const text = `【952.by.summer 預約清單】\n` +
+                         `● 凝膠項目：${gel ? gel.name : '未選擇'}\n` +
+                         `● 加購項目：${ads || '無'}\n` +
+                         `● 卸甲方案：${rem ? rem.name : '無'}\n` +
+                         `------------------\n` +
+                         `💰 預估總額：$${document.getElementById('total-amount').innerText}`;
             
-            text += "● 加購：";
-            const addonParts = currentData.addons
-                .filter(i => selection.addons[i.id] > 0)
-                .map(i => `${i.name}x${selection.addons[i.id]}`);
-            text += addonParts.length ? addonParts.join(', ') : '無';
-            text += "\n";
-
-            const removal = currentData.removals.find(i => i.id === selection.removal);
-            text += `● 卸甲：${removal ? removal.name : '無'}\n`;
-            text += `--- \n總計金額：$${document.getElementById('total-amount').innerText}`;
-
-            navigator.clipboard.writeText(text).then(() => {
-                alert('預約內容已複製！');
-            });
+            navigator.clipboard.writeText(text).then(() => alert('清單已複製，快傳給 Summer 吧！'));
         }
 
-        // 後台邏輯
-        let clickCount = 0;
+        // 後台控制
+        let clicks = 0;
         document.getElementById('shop-name').onclick = () => {
-            clickCount++;
-            if (clickCount === 5) {
-                openAdmin();
-                clickCount = 0;
+            clicks++;
+            if (clicks === 5) {
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('admin-panel').style.display = 'block';
+                document.getElementById('data-input').value = JSON.stringify(currentData, null, 2);
+                clicks = 0;
             }
         };
-
-        function openAdmin() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('admin-panel').style.display = 'block';
-            document.getElementById('data-input').value = JSON.stringify(currentData, null, 2);
-        }
 
         function closeAdmin() {
             document.getElementById('overlay').style.display = 'none';
@@ -401,14 +360,12 @@
         function saveData() {
             try {
                 const newData = JSON.parse(document.getElementById('data-input').value);
-                localStorage.setItem('nailData', JSON.stringify(newData));
+                localStorage.setItem('nailData_summer', JSON.stringify(newData));
                 currentData = newData;
                 init();
                 closeAdmin();
-                alert('儲存成功！');
-            } catch (e) {
-                alert('格式錯誤，請檢查 JSON 格式');
-            }
+                alert('更新成功！');
+            } catch (e) { alert('格式有誤，請檢查 JSON 格式'); }
         }
 
         init();
